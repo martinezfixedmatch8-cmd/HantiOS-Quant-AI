@@ -121,6 +121,37 @@
       "retry_limit": 3,
       "attempt": 0,
       "next_task": "DATA-005"
+    },
+    {
+      "task_id": "DATA-005",
+      "title": "Define market data provider contract and replayable source interface",
+      "status": "COMMIT_GATE",
+      "base_commit": "3ec33ec",
+      "attempt": 1,
+      "qa_status": "PASS",
+      "qa_report": "task-reports-DATA-005-qa-report.md",
+      "implementation_report": "task-reports-DATA-005-implementation.md",
+      "lock": ".claude/orchestrator/locks/DATA-005.lock",
+      "dependencies": ["DATA-004"],
+      "priority": 5,
+      "scope": ["src/quant/data/provider.contract.ts", "tests/provider.contract.test.ts", "docs/quant/DATA-005.md", "task-reports/DATA-005/"],
+      "allowed_files": ["src/quant/data/provider.contract.ts", "tests/provider.contract.test.ts", "docs/quant/DATA-005.md", "task-reports/DATA-005/"],
+      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
+      "non_goals": ["MT5 integration", "Binance integration", "database persistence", "AI ranking", "real-money trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Define a provider-neutral request and response contract for historical candles."},
+        {"id": "AC-02", "text": "Define deterministic replay behavior for a local source without network access."},
+        {"id": "AC-03", "text": "Normalize provider responses through the DATA-004 ingestion pipeline and preserve source identity."},
+        {"id": "AC-04", "text": "Reject unsupported provider capabilities and invalid request ranges with explicit reasons."}
+      ],
+      "required_tests": ["npm test", "npm run typecheck"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-006"
     }
   ]
 }
