@@ -88,6 +88,37 @@
       "security_impact": "low",
       "retry_limit": 3,
       "next_task": "DATA-004"
+    },
+    {
+      "task_id": "DATA-004",
+      "title": "Add data pipeline normalization and historical data ingestion",
+      "status": "COMMIT_GATE",
+      "base_commit": "3f8dbee",
+      "attempt": 1,
+      "qa_status": "PASS",
+      "qa_report": "task-reports-DATA-004-qa-report.md",
+      "implementation_report": "task-reports-DATA-004-implementation.md",
+      "lock": ".claude/orchestrator/locks/DATA-004.lock",
+      "dependencies": ["DATA-003"],
+      "priority": 4,
+      "scope": ["src/quant/data/historical.pipeline.ts", "tests/historical.pipeline.test.ts", "docs/quant/DATA-004.md", "task-reports/DATA-004/"],
+      "allowed_files": ["src/quant/data/historical.pipeline.ts", "tests/historical.pipeline.test.ts", "docs/quant/DATA-004.md", "task-reports/DATA-004/"],
+      "forbidden_changes": ["provider network calls", "database migrations", "production ingestion jobs", "credentials", "live execution", "other repositories"],
+      "non_goals": ["database persistence", "economic calendar integration", "AI ranking", "real-money trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Normalize raw historical records through the canonical candle contract and preserve source metadata."},
+        {"id": "AC-02", "text": "Sort accepted candles deterministically and deduplicate by canonical candle key."},
+        {"id": "AC-03", "text": "Report rejected records and missing timeframe intervals without silently dropping evidence."},
+        {"id": "AC-04", "text": "Keep the pipeline deterministic and cover valid, duplicate, invalid, gap, and boundary cases with tests."}
+      ],
+      "required_tests": ["npm test", "npm run typecheck"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-005"
     }
   ]
 }
