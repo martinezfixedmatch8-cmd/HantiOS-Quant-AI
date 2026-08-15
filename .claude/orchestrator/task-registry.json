@@ -1,0 +1,71 @@
+{
+  "project": "HantiOS-Quant-AI",
+  "repository": "martinezfixedmatch8-cmd/HantiOS-Quant-AI",
+  "out_of_scope_repositories": ["martinezfixedmatch8-cmd/hantios-backend"],
+  "tasks": [
+    {
+      "task_id": "DATA-001",
+      "title": "Add canonical candle data contract and validation",
+      "status": "READY",
+      "dependencies": [],
+      "priority": 1,
+      "owner": "software-engineer-agent",
+      "scope": ["src/quant/data/candle.contract.ts", "tests/candle.contract.test.ts", "docs/quant/DATA-001.md", "task-reports/DATA-001/"],
+      "allowed_files": ["src/quant/data/candle.contract.ts", "tests/candle.contract.test.ts", "docs/quant/DATA-001.md", "task-reports/DATA-001/"],
+      "forbidden_changes": ["live execution", "database migrations", "credentials", "production configuration", "other repositories"],
+      "non_goals": ["provider adapters", "database persistence", "AI ranking", "live trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Normalize symbol, timeframe, and timestamp into a canonical candle representation."},
+        {"id": "AC-02", "text": "Reject invalid OHLC relationships, non-positive volume, and non-UTC timestamps."},
+        {"id": "AC-03", "text": "Produce a stable deduplication key for an accepted candle."},
+        {"id": "AC-04", "text": "Cover valid, invalid, boundary, and duplicate cases with automated tests."}
+      ],
+      "required_tests": ["node --test tests/candle.contract.test.ts"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-002"
+    },
+    {
+      "task_id": "DATA-002",
+      "title": "Add canonical symbol registry and provider mappings",
+      "status": "DEPENDENCY_BLOCKED",
+      "dependencies": ["DATA-001"],
+      "priority": 2,
+      "scope": ["src/quant/data/symbol.registry.ts", "tests/symbol.registry.test.ts"],
+      "allowed_files": ["src/quant/data/symbol.registry.ts", "tests/symbol.registry.test.ts"],
+      "forbidden_changes": ["other repositories", "live execution"],
+      "non_goals": ["provider network calls", "database persistence"],
+      "acceptance_criteria": ["Provider aliases resolve to one canonical symbol without collisions."],
+      "required_tests": ["node --test tests/symbol.registry.test.ts"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "next_task": "DATA-003"
+    },
+    {
+      "task_id": "DATA-003",
+      "title": "Add timeframe, session, and freshness validation",
+      "status": "DEPENDENCY_BLOCKED",
+      "dependencies": ["DATA-002"],
+      "priority": 3,
+      "scope": ["src/quant/data/session.validation.ts", "tests/session.validation.test.ts"],
+      "allowed_files": ["src/quant/data/session.validation.ts", "tests/session.validation.test.ts"],
+      "forbidden_changes": ["live execution", "production schedules"],
+      "non_goals": ["economic calendar integration", "broker execution"],
+      "acceptance_criteria": ["Reject stale or session-incompatible candles with explicit reasons."],
+      "required_tests": ["node --test tests/session.validation.test.ts"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "next_task": "DATA-004"
+    }
+  ]
+}
