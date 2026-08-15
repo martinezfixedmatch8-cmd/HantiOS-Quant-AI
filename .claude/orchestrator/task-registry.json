@@ -220,6 +220,37 @@
       "retry_limit": 3,
       "attempt": 0,
       "next_task": "DATA-008"
+    },
+    {
+      "task_id": "DATA-008",
+      "title": "Add market data request orchestration and quality-aware fetch plan",
+      "status": "COMMIT_GATE",
+      "base_commit": "987541f",
+      "attempt": 1,
+      "qa_status": "PASS",
+      "qa_report": "task-reports-DATA-008-qa-report.md",
+      "implementation_report": "task-reports-DATA-008-implementation.md",
+      "lock": ".claude/orchestrator/locks/DATA-008.lock",
+      "dependencies": ["DATA-007"],
+      "priority": 8,
+      "scope": ["src/quant/data/request.orchestrator.ts", "tests/request.orchestrator.test.ts", "docs/quant/DATA-008.md", "task-reports-DATA-008/"],
+      "allowed_files": ["src/quant/data/request.orchestrator.ts", "tests/request.orchestrator.test.ts", "docs/quant/DATA-008.md", "task-reports-DATA-008/"],
+      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
+      "non_goals": ["real provider integration", "database persistence", "scheduled jobs", "AI ranking", "real-money trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Create a deterministic fetch plan for a canonical symbol, timeframe, and UTC range using provider routing."},
+        {"id": "AC-02", "text": "Reject invalid ranges and unsupported requests before provider invocation."},
+        {"id": "AC-03", "text": "Use the selected provider exactly once in the plan and carry quality/freshness policy into the request."},
+        {"id": "AC-04", "text": "Return structured blocked reasons when routing cannot produce a safe plan and cover all boundaries with tests."}
+      ],
+      "required_tests": ["npm test", "npm run typecheck"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-009"
     }
   ]
 }
