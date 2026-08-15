@@ -6,10 +6,13 @@
     {
       "task_id": "DATA-001",
       "title": "Add canonical candle data contract and validation",
-      "status": "COMMIT_GATE",
+      "status": "REPORT",
       "base_commit": "c6d95d079e27d83afd55831d4d97ee014f7d01b1",
+      "reviewed_head": "e5a8d2d",
       "qa_status": "PASS",
       "qa_report": "task-reports/DATA-001/qa-report.md",
+      "commit_sha": "e5a8d2d",
+      "completion_report": "task-reports/DATA-001/completion.md",
       "dependencies": [],
       "priority": 1,
       "owner": "software-engineer-agent",
@@ -35,7 +38,7 @@
     {
       "task_id": "DATA-002",
       "title": "Add canonical symbol registry and provider mappings",
-      "status": "DEPENDENCY_BLOCKED",
+      "status": "READY",
       "dependencies": ["DATA-001"],
       "priority": 2,
       "scope": ["src/quant/data/symbol.registry.ts", "tests/symbol.registry.test.ts"],
