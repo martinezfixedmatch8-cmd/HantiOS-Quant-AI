@@ -253,6 +253,34 @@
       "retry_limit": 3,
       "attempt": 0,
       "next_task": "DATA-009"
+    },
+    {
+      "task_id": "DATA-009",
+      "title": "Add market data snapshot and provenance envelope",
+      "status": "IMPLEMENTING",
+      "base_commit": "8a6b04c",
+      "attempt": 1,
+      "lock": ".claude/orchestrator/locks/DATA-009.lock",
+      "dependencies": ["DATA-008"],
+      "priority": 9,
+      "scope": ["src/quant/data/snapshot.contract.ts", "tests/snapshot.contract.test.ts", "docs/quant/DATA-009.md", "task-reports-DATA-009/"],
+      "allowed_files": ["src/quant/data/snapshot.contract.ts", "tests/snapshot.contract.test.ts", "docs/quant/DATA-009.md", "task-reports-DATA-009/"],
+      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
+      "non_goals": ["HTTP API server", "database persistence", "real provider integration", "AI ranking", "real-money trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Create a deterministic snapshot envelope containing plan identity, provider provenance, canonical request, candles, and quality state."},
+        {"id": "AC-02", "text": "Reject snapshots with missing identity, invalid time ranges, or blocked quality state."},
+        {"id": "AC-03", "text": "Preserve source provenance and produce a stable snapshot key for identical inputs."},
+        {"id": "AC-04", "text": "Cover ready, blocked, empty, provenance, and deterministic-key boundaries with tests."}
+      ],
+      "required_tests": ["npm test", "npm run typecheck"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-010"
     }
   ]
 }
