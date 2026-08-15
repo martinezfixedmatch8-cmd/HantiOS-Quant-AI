@@ -154,6 +154,37 @@
       "retry_limit": 3,
       "attempt": 0,
       "next_task": "DATA-006"
+    },
+    {
+      "task_id": "DATA-006",
+      "title": "Add provider health and ingestion quality gate",
+      "status": "COMMIT_GATE",
+      "base_commit": "4b93f34",
+      "attempt": 1,
+      "qa_status": "PASS",
+      "qa_report": "task-reports-DATA-006-qa-report.md",
+      "implementation_report": "task-reports-DATA-006-implementation.md",
+      "lock": ".claude/orchestrator/locks/DATA-006.lock",
+      "dependencies": ["DATA-005"],
+      "priority": 6,
+      "scope": ["src/quant/data/quality.gate.ts", "tests/quality.gate.test.ts", "docs/quant/DATA-006.md", "task-reports-DATA-006/"],
+      "allowed_files": ["src/quant/data/quality.gate.ts", "tests/quality.gate.test.ts", "docs/quant/DATA-006.md", "task-reports-DATA-006/"],
+      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
+      "non_goals": ["real provider integration", "database persistence", "AI ranking", "real-money trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Evaluate ingestion quality using accepted, rejected, duplicate, gap, and total-record counts."},
+        {"id": "AC-02", "text": "Return deterministic PASS or BLOCKED quality states with explicit reasons and thresholds."},
+        {"id": "AC-03", "text": "Evaluate provider health from latency, response status, and freshness signals without making network calls."},
+        {"id": "AC-04", "text": "Cover healthy, degraded, blocked, empty, stale, and boundary cases with tests."}
+      ],
+      "required_tests": ["npm test", "npm run typecheck"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-007"
     }
   ]
 }

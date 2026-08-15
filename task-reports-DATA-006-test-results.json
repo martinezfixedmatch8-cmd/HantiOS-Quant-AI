@@ -1,0 +1,17 @@
+{
+  "task": "DATA-006",
+  "audit_base": "4b93f34",
+  "attempt": 1,
+  "audit": {
+    "branch": "main",
+    "remote_aligned": true,
+    "working_tree_clean_before_task": true,
+    "registry_valid": true,
+    "previous_tests": 28
+  },
+  "commands": [
+    {"command": "npm test", "status": "PASS", "tests": 34, "failed": 0},
+    {"command": "npm run typecheck", "status": "PASS"},
+    {"command": "git diff --check", "status": "PASS"}
+  ]
+}
