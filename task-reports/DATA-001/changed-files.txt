@@ -1,0 +1,8 @@
+src/quant/data/candle.contract.ts
+tests/candle.contract.test.ts
+docs/quant/DATA-001.md
+task-reports/DATA-001/implementation.md
+task-reports/DATA-001/test-results.json
+task-reports/DATA-001/changed-files.txt
+task-reports/DATA-001/qa-report.md
+task-reports/DATA-001/completion.md

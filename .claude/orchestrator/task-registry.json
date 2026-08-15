@@ -6,7 +6,10 @@
     {
       "task_id": "DATA-001",
       "title": "Add canonical candle data contract and validation",
-      "status": "READY",
+      "status": "COMMIT_GATE",
+      "base_commit": "c6d95d079e27d83afd55831d4d97ee014f7d01b1",
+      "qa_status": "PASS",
+      "qa_report": "task-reports/DATA-001/qa-report.md",
       "dependencies": [],
       "priority": 1,
       "owner": "software-engineer-agent",
