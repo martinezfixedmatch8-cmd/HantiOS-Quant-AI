@@ -1,7 +1,9 @@
 {
   "project": "HantiOS-Quant-AI",
   "repository": "martinezfixedmatch8-cmd/HantiOS-Quant-AI",
-  "out_of_scope_repositories": ["martinezfixedmatch8-cmd/hantios-backend"],
+  "out_of_scope_repositories": [
+    "martinezfixedmatch8-cmd/hantios-backend"
+  ],
   "tasks": [
     {
       "task_id": "DATA-001",
@@ -16,24 +18,60 @@
       "dependencies": [],
       "priority": 1,
       "owner": "software-engineer-agent",
-      "scope": ["src/quant/data/candle.contract.ts", "tests/candle.contract.test.ts", "docs/quant/DATA-001.md", "task-reports/DATA-001/"],
-      "allowed_files": ["src/quant/data/candle.contract.ts", "tests/candle.contract.test.ts", "docs/quant/DATA-001.md", "task-reports/DATA-001/"],
-      "forbidden_changes": ["live execution", "database migrations", "credentials", "production configuration", "other repositories"],
-      "non_goals": ["provider adapters", "database persistence", "AI ranking", "live trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Normalize symbol, timeframe, and timestamp into a canonical candle representation."},
-        {"id": "AC-02", "text": "Reject invalid OHLC relationships, non-positive volume, and non-UTC timestamps."},
-        {"id": "AC-03", "text": "Produce a stable deduplication key for an accepted candle."},
-        {"id": "AC-04", "text": "Cover valid, invalid, boundary, and duplicate cases with automated tests."}
+      "scope": [
+        "src/quant/data/candle.contract.ts",
+        "tests/candle.contract.test.ts",
+        "docs/quant/DATA-001.md",
+        "task-reports/DATA-001/"
       ],
-      "required_tests": ["node --test tests/candle.contract.test.ts"],
+      "allowed_files": [
+        "src/quant/data/candle.contract.ts",
+        "tests/candle.contract.test.ts",
+        "docs/quant/DATA-001.md",
+        "task-reports/DATA-001/"
+      ],
+      "forbidden_changes": [
+        "live execution",
+        "database migrations",
+        "credentials",
+        "production configuration",
+        "other repositories"
+      ],
+      "non_goals": [
+        "provider adapters",
+        "database persistence",
+        "AI ranking",
+        "live trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Normalize symbol, timeframe, and timestamp into a canonical candle representation."
+        },
+        {
+          "id": "AC-02",
+          "text": "Reject invalid OHLC relationships, non-positive volume, and non-UTC timestamps."
+        },
+        {
+          "id": "AC-03",
+          "text": "Produce a stable deduplication key for an accepted candle."
+        },
+        {
+          "id": "AC-04",
+          "text": "Cover valid, invalid, boundary, and duplicate cases with automated tests."
+        }
+      ],
+      "required_tests": [
+        "node --test tests/candle.contract.test.ts"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
       "attempt": 0,
-      "next_task": "DATA-002"
+      "next_task": "DATA-002",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-002",
@@ -47,20 +85,39 @@
       "implementation_report": "task-reports/DATA-002-implementation.md",
       "completion_report": "task-reports/DATA-002-completion.md",
       "commit_sha": "c4f59ed",
-      "dependencies": ["DATA-001"],
+      "dependencies": [
+        "DATA-001"
+      ],
       "priority": 2,
-      "scope": ["src/quant/data/symbol.registry.ts", "tests/symbol.registry.test.ts"],
-      "allowed_files": ["src/quant/data/symbol.registry.ts", "tests/symbol.registry.test.ts"],
-      "forbidden_changes": ["other repositories", "live execution"],
-      "non_goals": ["provider network calls", "database persistence"],
-      "acceptance_criteria": ["Provider aliases resolve to one canonical symbol without collisions."],
-      "required_tests": ["node --test tests/symbol.registry.test.ts"],
+      "scope": [
+        "src/quant/data/symbol.registry.ts",
+        "tests/symbol.registry.test.ts"
+      ],
+      "allowed_files": [
+        "src/quant/data/symbol.registry.ts",
+        "tests/symbol.registry.test.ts"
+      ],
+      "forbidden_changes": [
+        "other repositories",
+        "live execution"
+      ],
+      "non_goals": [
+        "provider network calls",
+        "database persistence"
+      ],
+      "acceptance_criteria": [
+        "Provider aliases resolve to one canonical symbol without collisions."
+      ],
+      "required_tests": [
+        "node --test tests/symbol.registry.test.ts"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "next_task": "DATA-003"
+      "next_task": "DATA-003",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-003",
@@ -74,20 +131,39 @@
       "implementation_report": "task-reports/DATA-003-implementation.md",
       "completion_report": "task-reports/DATA-003-completion.md",
       "commit_sha": "7620328",
-      "dependencies": ["DATA-002"],
+      "dependencies": [
+        "DATA-002"
+      ],
       "priority": 3,
-      "scope": ["src/quant/data/session.validation.ts", "tests/session.validation.test.ts"],
-      "allowed_files": ["src/quant/data/session.validation.ts", "tests/session.validation.test.ts"],
-      "forbidden_changes": ["live execution", "production schedules"],
-      "non_goals": ["economic calendar integration", "broker execution"],
-      "acceptance_criteria": ["Reject stale or session-incompatible candles with explicit reasons."],
-      "required_tests": ["node --test tests/session.validation.test.ts"],
+      "scope": [
+        "src/quant/data/session.validation.ts",
+        "tests/session.validation.test.ts"
+      ],
+      "allowed_files": [
+        "src/quant/data/session.validation.ts",
+        "tests/session.validation.test.ts"
+      ],
+      "forbidden_changes": [
+        "live execution",
+        "production schedules"
+      ],
+      "non_goals": [
+        "economic calendar integration",
+        "broker execution"
+      ],
+      "acceptance_criteria": [
+        "Reject stale or session-incompatible candles with explicit reasons."
+      ],
+      "required_tests": [
+        "node --test tests/session.validation.test.ts"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "next_task": "DATA-004"
+      "next_task": "DATA-004",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-004",
@@ -95,32 +171,71 @@
       "status": "REPORT",
       "base_commit": "3f8dbee",
       "reviewed_head": "a9c2938",
-      "attempt": 1,
+      "attempt": 0,
       "qa_status": "PASS",
       "qa_report": "task-reports-DATA-004-qa-report.md",
       "implementation_report": "task-reports-DATA-004-implementation.md",
       "completion_report": "task-reports-DATA-004-completion.md",
       "commit_sha": "a9c2938",
-      "dependencies": ["DATA-003"],
-      "priority": 4,
-      "scope": ["src/quant/data/historical.pipeline.ts", "tests/historical.pipeline.test.ts", "docs/quant/DATA-004.md", "task-reports/DATA-004/"],
-      "allowed_files": ["src/quant/data/historical.pipeline.ts", "tests/historical.pipeline.test.ts", "docs/quant/DATA-004.md", "task-reports/DATA-004/"],
-      "forbidden_changes": ["provider network calls", "database migrations", "production ingestion jobs", "credentials", "live execution", "other repositories"],
-      "non_goals": ["database persistence", "economic calendar integration", "AI ranking", "real-money trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Normalize raw historical records through the canonical candle contract and preserve source metadata."},
-        {"id": "AC-02", "text": "Sort accepted candles deterministically and deduplicate by canonical candle key."},
-        {"id": "AC-03", "text": "Report rejected records and missing timeframe intervals without silently dropping evidence."},
-        {"id": "AC-04", "text": "Keep the pipeline deterministic and cover valid, duplicate, invalid, gap, and boundary cases with tests."}
+      "dependencies": [
+        "DATA-003"
       ],
-      "required_tests": ["npm test", "npm run typecheck"],
+      "priority": 4,
+      "scope": [
+        "src/quant/data/historical.pipeline.ts",
+        "tests/historical.pipeline.test.ts",
+        "docs/quant/DATA-004.md",
+        "task-reports/DATA-004/"
+      ],
+      "allowed_files": [
+        "src/quant/data/historical.pipeline.ts",
+        "tests/historical.pipeline.test.ts",
+        "docs/quant/DATA-004.md",
+        "task-reports/DATA-004/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "database migrations",
+        "production ingestion jobs",
+        "credentials",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "database persistence",
+        "economic calendar integration",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Normalize raw historical records through the canonical candle contract and preserve source metadata."
+        },
+        {
+          "id": "AC-02",
+          "text": "Sort accepted candles deterministically and deduplicate by canonical candle key."
+        },
+        {
+          "id": "AC-03",
+          "text": "Report rejected records and missing timeframe intervals without silently dropping evidence."
+        },
+        {
+          "id": "AC-04",
+          "text": "Keep the pipeline deterministic and cover valid, duplicate, invalid, gap, and boundary cases with tests."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "attempt": 0,
-      "next_task": "DATA-005"
+      "next_task": "DATA-005",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-005",
@@ -128,32 +243,72 @@
       "status": "REPORT",
       "base_commit": "3ec33ec",
       "reviewed_head": "333baee",
-      "attempt": 1,
+      "attempt": 0,
       "qa_status": "PASS",
       "qa_report": "task-reports-DATA-005-qa-report.md",
       "implementation_report": "task-reports-DATA-005-implementation.md",
       "completion_report": "task-reports-DATA-005-completion.md",
       "commit_sha": "333baee",
-      "dependencies": ["DATA-004"],
-      "priority": 5,
-      "scope": ["src/quant/data/provider.contract.ts", "tests/provider.contract.test.ts", "docs/quant/DATA-005.md", "task-reports/DATA-005/"],
-      "allowed_files": ["src/quant/data/provider.contract.ts", "tests/provider.contract.test.ts", "docs/quant/DATA-005.md", "task-reports/DATA-005/"],
-      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
-      "non_goals": ["MT5 integration", "Binance integration", "database persistence", "AI ranking", "real-money trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Define a provider-neutral request and response contract for historical candles."},
-        {"id": "AC-02", "text": "Define deterministic replay behavior for a local source without network access."},
-        {"id": "AC-03", "text": "Normalize provider responses through the DATA-004 ingestion pipeline and preserve source identity."},
-        {"id": "AC-04", "text": "Reject unsupported provider capabilities and invalid request ranges with explicit reasons."}
+      "dependencies": [
+        "DATA-004"
       ],
-      "required_tests": ["npm test", "npm run typecheck"],
+      "priority": 5,
+      "scope": [
+        "src/quant/data/provider.contract.ts",
+        "tests/provider.contract.test.ts",
+        "docs/quant/DATA-005.md",
+        "task-reports/DATA-005/"
+      ],
+      "allowed_files": [
+        "src/quant/data/provider.contract.ts",
+        "tests/provider.contract.test.ts",
+        "docs/quant/DATA-005.md",
+        "task-reports/DATA-005/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "credentials",
+        "database migrations",
+        "production adapters",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "MT5 integration",
+        "Binance integration",
+        "database persistence",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Define a provider-neutral request and response contract for historical candles."
+        },
+        {
+          "id": "AC-02",
+          "text": "Define deterministic replay behavior for a local source without network access."
+        },
+        {
+          "id": "AC-03",
+          "text": "Normalize provider responses through the DATA-004 ingestion pipeline and preserve source identity."
+        },
+        {
+          "id": "AC-04",
+          "text": "Reject unsupported provider capabilities and invalid request ranges with explicit reasons."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "attempt": 0,
-      "next_task": "DATA-006"
+      "next_task": "DATA-006",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-006",
@@ -161,32 +316,71 @@
       "status": "REPORT",
       "base_commit": "4b93f34",
       "reviewed_head": "c60a8f3",
-      "attempt": 1,
+      "attempt": 0,
       "qa_status": "PASS",
       "qa_report": "task-reports-DATA-006-qa-report.md",
       "implementation_report": "task-reports-DATA-006-implementation.md",
       "completion_report": "task-reports-DATA-006-completion.md",
       "commit_sha": "c60a8f3",
-      "dependencies": ["DATA-005"],
-      "priority": 6,
-      "scope": ["src/quant/data/quality.gate.ts", "tests/quality.gate.test.ts", "docs/quant/DATA-006.md", "task-reports-DATA-006/"],
-      "allowed_files": ["src/quant/data/quality.gate.ts", "tests/quality.gate.test.ts", "docs/quant/DATA-006.md", "task-reports-DATA-006/"],
-      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
-      "non_goals": ["real provider integration", "database persistence", "AI ranking", "real-money trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Evaluate ingestion quality using accepted, rejected, duplicate, gap, and total-record counts."},
-        {"id": "AC-02", "text": "Return deterministic PASS or BLOCKED quality states with explicit reasons and thresholds."},
-        {"id": "AC-03", "text": "Evaluate provider health from latency, response status, and freshness signals without making network calls."},
-        {"id": "AC-04", "text": "Cover healthy, degraded, blocked, empty, stale, and boundary cases with tests."}
+      "dependencies": [
+        "DATA-005"
       ],
-      "required_tests": ["npm test", "npm run typecheck"],
+      "priority": 6,
+      "scope": [
+        "src/quant/data/quality.gate.ts",
+        "tests/quality.gate.test.ts",
+        "docs/quant/DATA-006.md",
+        "task-reports-DATA-006/"
+      ],
+      "allowed_files": [
+        "src/quant/data/quality.gate.ts",
+        "tests/quality.gate.test.ts",
+        "docs/quant/DATA-006.md",
+        "task-reports-DATA-006/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "credentials",
+        "database migrations",
+        "production adapters",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "real provider integration",
+        "database persistence",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Evaluate ingestion quality using accepted, rejected, duplicate, gap, and total-record counts."
+        },
+        {
+          "id": "AC-02",
+          "text": "Return deterministic PASS or BLOCKED quality states with explicit reasons and thresholds."
+        },
+        {
+          "id": "AC-03",
+          "text": "Evaluate provider health from latency, response status, and freshness signals without making network calls."
+        },
+        {
+          "id": "AC-04",
+          "text": "Cover healthy, degraded, blocked, empty, stale, and boundary cases with tests."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "attempt": 0,
-      "next_task": "DATA-007"
+      "next_task": "DATA-007",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-007",
@@ -194,32 +388,72 @@
       "status": "REPORT",
       "base_commit": "78a39b2",
       "reviewed_head": "2c09d7d",
-      "attempt": 1,
+      "attempt": 0,
       "qa_status": "PASS",
       "qa_report": "task-reports-DATA-007-qa-report.md",
       "implementation_report": "task-reports-DATA-007-implementation.md",
       "completion_report": "task-reports-DATA-007-completion.md",
       "commit_sha": "2c09d7d",
-      "dependencies": ["DATA-006"],
-      "priority": 7,
-      "scope": ["src/quant/data/provider.router.ts", "tests/provider.router.test.ts", "docs/quant/DATA-007.md", "task-reports-DATA-007/"],
-      "allowed_files": ["src/quant/data/provider.router.ts", "tests/provider.router.test.ts", "docs/quant/DATA-007.md", "task-reports-DATA-007/"],
-      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
-      "non_goals": ["real provider integration", "automatic trading", "database persistence", "AI ranking", "real-money trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Select an eligible provider deterministically using capability, symbol, timeframe, health, and quality state."},
-        {"id": "AC-02", "text": "Use explicit priority order and deterministic fallback without silently selecting blocked providers."},
-        {"id": "AC-03", "text": "Return structured rejection reasons when no eligible provider exists."},
-        {"id": "AC-04", "text": "Cover primary selection, fallback, ties, unsupported capability, degraded policy, and all-blocked cases with tests."}
+      "dependencies": [
+        "DATA-006"
       ],
-      "required_tests": ["npm test", "npm run typecheck"],
+      "priority": 7,
+      "scope": [
+        "src/quant/data/provider.router.ts",
+        "tests/provider.router.test.ts",
+        "docs/quant/DATA-007.md",
+        "task-reports-DATA-007/"
+      ],
+      "allowed_files": [
+        "src/quant/data/provider.router.ts",
+        "tests/provider.router.test.ts",
+        "docs/quant/DATA-007.md",
+        "task-reports-DATA-007/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "credentials",
+        "database migrations",
+        "production adapters",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "real provider integration",
+        "automatic trading",
+        "database persistence",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Select an eligible provider deterministically using capability, symbol, timeframe, health, and quality state."
+        },
+        {
+          "id": "AC-02",
+          "text": "Use explicit priority order and deterministic fallback without silently selecting blocked providers."
+        },
+        {
+          "id": "AC-03",
+          "text": "Return structured rejection reasons when no eligible provider exists."
+        },
+        {
+          "id": "AC-04",
+          "text": "Cover primary selection, fallback, ties, unsupported capability, degraded policy, and all-blocked cases with tests."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "attempt": 0,
-      "next_task": "DATA-008"
+      "next_task": "DATA-008",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-008",
@@ -227,60 +461,218 @@
       "status": "REPORT",
       "base_commit": "987541f",
       "reviewed_head": "079035f",
-      "attempt": 1,
+      "attempt": 0,
       "qa_status": "PASS",
       "qa_report": "task-reports-DATA-008-qa-report.md",
       "implementation_report": "task-reports-DATA-008-implementation.md",
       "completion_report": "task-reports-DATA-008-completion.md",
       "commit_sha": "079035f",
-      "dependencies": ["DATA-007"],
-      "priority": 8,
-      "scope": ["src/quant/data/request.orchestrator.ts", "tests/request.orchestrator.test.ts", "docs/quant/DATA-008.md", "task-reports-DATA-008/"],
-      "allowed_files": ["src/quant/data/request.orchestrator.ts", "tests/request.orchestrator.test.ts", "docs/quant/DATA-008.md", "task-reports-DATA-008/"],
-      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
-      "non_goals": ["real provider integration", "database persistence", "scheduled jobs", "AI ranking", "real-money trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Create a deterministic fetch plan for a canonical symbol, timeframe, and UTC range using provider routing."},
-        {"id": "AC-02", "text": "Reject invalid ranges and unsupported requests before provider invocation."},
-        {"id": "AC-03", "text": "Use the selected provider exactly once in the plan and carry quality/freshness policy into the request."},
-        {"id": "AC-04", "text": "Return structured blocked reasons when routing cannot produce a safe plan and cover all boundaries with tests."}
+      "dependencies": [
+        "DATA-007"
       ],
-      "required_tests": ["npm test", "npm run typecheck"],
+      "priority": 8,
+      "scope": [
+        "src/quant/data/request.orchestrator.ts",
+        "tests/request.orchestrator.test.ts",
+        "docs/quant/DATA-008.md",
+        "task-reports-DATA-008/"
+      ],
+      "allowed_files": [
+        "src/quant/data/request.orchestrator.ts",
+        "tests/request.orchestrator.test.ts",
+        "docs/quant/DATA-008.md",
+        "task-reports-DATA-008/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "credentials",
+        "database migrations",
+        "production adapters",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "real provider integration",
+        "database persistence",
+        "scheduled jobs",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Create a deterministic fetch plan for a canonical symbol, timeframe, and UTC range using provider routing."
+        },
+        {
+          "id": "AC-02",
+          "text": "Reject invalid ranges and unsupported requests before provider invocation."
+        },
+        {
+          "id": "AC-03",
+          "text": "Use the selected provider exactly once in the plan and carry quality/freshness policy into the request."
+        },
+        {
+          "id": "AC-04",
+          "text": "Return structured blocked reasons when routing cannot produce a safe plan and cover all boundaries with tests."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
-      "attempt": 0,
-      "next_task": "DATA-009"
+      "next_task": "DATA-009",
+      "financial_safety": "DATA"
     },
     {
       "task_id": "DATA-009",
       "title": "Add market data snapshot and provenance envelope",
-      "status": "IMPLEMENTING",
+      "status": "REPORT",
       "base_commit": "8a6b04c",
       "attempt": 1,
-      "lock": ".claude/orchestrator/locks/DATA-009.lock",
-      "dependencies": ["DATA-008"],
-      "priority": 9,
-      "scope": ["src/quant/data/snapshot.contract.ts", "tests/snapshot.contract.test.ts", "docs/quant/DATA-009.md", "task-reports-DATA-009/"],
-      "allowed_files": ["src/quant/data/snapshot.contract.ts", "tests/snapshot.contract.test.ts", "docs/quant/DATA-009.md", "task-reports-DATA-009/"],
-      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
-      "non_goals": ["HTTP API server", "database persistence", "real provider integration", "AI ranking", "real-money trading"],
-      "acceptance_criteria": [
-        {"id": "AC-01", "text": "Create a deterministic snapshot envelope containing plan identity, provider provenance, canonical request, candles, and quality state."},
-        {"id": "AC-02", "text": "Reject snapshots with missing identity, invalid time ranges, or blocked quality state."},
-        {"id": "AC-03", "text": "Preserve source provenance and produce a stable snapshot key for identical inputs."},
-        {"id": "AC-04", "text": "Cover ready, blocked, empty, provenance, and deterministic-key boundaries with tests."}
+      "dependencies": [
+        "DATA-008"
       ],
-      "required_tests": ["npm test", "npm run typecheck"],
+      "priority": 9,
+      "scope": [
+        "src/quant/data/snapshot.contract.ts",
+        "tests/snapshot.contract.test.ts",
+        "docs/quant/DATA-009.md",
+        "task-reports-DATA-009/"
+      ],
+      "allowed_files": [
+        "src/quant/data/snapshot.contract.ts",
+        "tests/snapshot.contract.test.ts",
+        "docs/quant/DATA-009.md",
+        "task-reports-DATA-009/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "credentials",
+        "database migrations",
+        "production adapters",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "HTTP API server",
+        "database persistence",
+        "real provider integration",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Create a deterministic snapshot envelope containing plan identity, provider provenance, canonical request, candles, and quality state."
+        },
+        {
+          "id": "AC-02",
+          "text": "Reject snapshots with missing identity, invalid time ranges, or blocked quality state."
+        },
+        {
+          "id": "AC-03",
+          "text": "Preserve source provenance and produce a stable snapshot key for identical inputs."
+        },
+        {
+          "id": "AC-04",
+          "text": "Cover ready, blocked, empty, provenance, and deterministic-key boundaries with tests."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
       "risk_level": "DATA",
       "migration_required": false,
       "external_api": false,
       "security_impact": "low",
       "retry_limit": 3,
+      "next_task": "DATA-010",
+      "reviewed_head": "bc463bc227422c1b1b2c25fa81241aad945e4f5e",
+      "qa_status": "PASS",
+      "qa_report": "task-reports-DATA-009-qa-report.md",
+      "implementation_report": "task-reports-DATA-009-implementation.md",
+      "test_results": "task-reports-DATA-009-test-results.json",
+      "completion_report": "task-reports-DATA-009-completion.md",
+      "commit_sha": "bc463bc227422c1c1b2c25fa81241aad945e4f5e",
+      "financial_safety": "DATA"
+    },
+    {
+      "task_id": "DATA-010",
+      "title": "Add internal market data snapshot store boundary",
+      "status": "READY",
+      "base_commit": "bc463bc227422c1c1b2c25fa81241aad945e4f5e",
       "attempt": 0,
-      "next_task": "DATA-010"
+      "dependencies": [
+        "DATA-009"
+      ],
+      "priority": 10,
+      "scope": [
+        "src/quant/data/snapshot.store.ts",
+        "tests/snapshot.store.test.ts",
+        "docs/quant/DATA-010.md",
+        "task-reports-DATA-010/"
+      ],
+      "allowed_files": [
+        "src/quant/data/snapshot.store.ts",
+        "tests/snapshot.store.test.ts",
+        "docs/quant/DATA-010.md",
+        "task-reports-DATA-010/"
+      ],
+      "forbidden_changes": [
+        "provider network calls",
+        "credentials",
+        "database migrations",
+        "production configuration",
+        "HTTP API server",
+        "live execution",
+        "other repositories"
+      ],
+      "non_goals": [
+        "database persistence",
+        "provider integration",
+        "scheduled jobs",
+        "AI ranking",
+        "real-money trading"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "AC-01",
+          "text": "Store only ready DATA-009 snapshots and reject blocked envelopes."
+        },
+        {
+          "id": "AC-02",
+          "text": "Retrieve snapshots by stable snapshot key with explicit not-found behavior."
+        },
+        {
+          "id": "AC-03",
+          "text": "Make stored and returned candle collections immutable from the caller's perspective."
+        },
+        {
+          "id": "AC-04",
+          "text": "Make repeated writes deterministic and idempotent for identical snapshot keys."
+        },
+        {
+          "id": "AC-05",
+          "text": "Cover valid, blocked, duplicate, missing, mutation, and boundary cases with automated tests."
+        }
+      ],
+      "required_tests": [
+        "npm test",
+        "npm run typecheck"
+      ],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "next_task": "DATA-011",
+      "financial_safety": "DATA"
     }
   ]
 }
