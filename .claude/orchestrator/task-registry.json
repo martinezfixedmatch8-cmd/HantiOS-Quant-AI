@@ -187,6 +187,37 @@
       "retry_limit": 3,
       "attempt": 0,
       "next_task": "DATA-007"
+    },
+    {
+      "task_id": "DATA-007",
+      "title": "Add provider selection and deterministic fallback policy",
+      "status": "COMMIT_GATE",
+      "base_commit": "78a39b2",
+      "attempt": 1,
+      "qa_status": "PASS",
+      "qa_report": "task-reports-DATA-007-qa-report.md",
+      "implementation_report": "task-reports-DATA-007-implementation.md",
+      "lock": ".claude/orchestrator/locks/DATA-007.lock",
+      "dependencies": ["DATA-006"],
+      "priority": 7,
+      "scope": ["src/quant/data/provider.router.ts", "tests/provider.router.test.ts", "docs/quant/DATA-007.md", "task-reports-DATA-007/"],
+      "allowed_files": ["src/quant/data/provider.router.ts", "tests/provider.router.test.ts", "docs/quant/DATA-007.md", "task-reports-DATA-007/"],
+      "forbidden_changes": ["provider network calls", "credentials", "database migrations", "production adapters", "live execution", "other repositories"],
+      "non_goals": ["real provider integration", "automatic trading", "database persistence", "AI ranking", "real-money trading"],
+      "acceptance_criteria": [
+        {"id": "AC-01", "text": "Select an eligible provider deterministically using capability, symbol, timeframe, health, and quality state."},
+        {"id": "AC-02", "text": "Use explicit priority order and deterministic fallback without silently selecting blocked providers."},
+        {"id": "AC-03", "text": "Return structured rejection reasons when no eligible provider exists."},
+        {"id": "AC-04", "text": "Cover primary selection, fallback, ties, unsupported capability, degraded policy, and all-blocked cases with tests."}
+      ],
+      "required_tests": ["npm test", "npm run typecheck"],
+      "risk_level": "DATA",
+      "migration_required": false,
+      "external_api": false,
+      "security_impact": "low",
+      "retry_limit": 3,
+      "attempt": 0,
+      "next_task": "DATA-008"
     }
   ]
 }
